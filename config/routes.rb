@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
   scope '(:locale)' do
-  resources :websites
+  resources :websites do
+    resources :pages
+  end
   get 'about', to: 'static_pages#about'
   root to: 'static_pages#home'
   get 'static_pages/home'

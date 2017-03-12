@@ -229,6 +229,19 @@ en:
       format:
         delimiter: "."
   older: Older >>
+  pages:
+    create:
+      page_succes: Page succes
+    destroy:
+      page_destroyed: Page destroyed
+    edit:
+      update: Update
+    index:
+      Pages: Pages
+    new:
+      create: Create
+    update:
+      page_updated: Page updated
   register: Register
   resend_instruction: Resend confirmation instructions
   resend_unlock: Resend unlock instructions

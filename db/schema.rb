@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312011353) do
+ActiveRecord::Schema.define(version: 20170312020334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,15 @@ ActiveRecord::Schema.define(version: 20170312011353) do
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
     t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+  end
+
+  create_table "pages", force: :cascade do |t|
+    t.integer  "website_id"
+    t.string   "title"
+    t.text     "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["website_id"], name: "index_pages_on_website_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -53,5 +62,6 @@ ActiveRecord::Schema.define(version: 20170312011353) do
     t.index ["user_id"], name: "index_websites_on_user_id", using: :btree
   end
 
+  add_foreign_key "pages", "websites"
   add_foreign_key "websites", "users"
 end

@@ -1,0 +1,12 @@
+<h1><%= t('adding') %> Page</h1>
+
+<%= form_for([@website,@page], url:website_pages_path( locale: I18n.locale) ) do |f| %>
+
+  <%= render 'form',  f: f %>
+
+  <div class="form-group">
+    <%= f.submit t('.create'), class:'btn btn-primary' %>
+  </div>
+  <% end %>
+
+<%= link_to fa_icon('arrow-circle-left 2x'), website_pages_path(locale:I18n.locale) %>

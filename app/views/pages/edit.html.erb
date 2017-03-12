@@ -1,0 +1,12 @@
+<h1><%= t('editing') %>  Page</h1>
+<%= form_for(@page, url:website_page_path(@website, @page, locale: I18n.locale) ) do |f| %>
+
+  <%= render 'form', f:f %>
+
+  <div class="form-group">
+    <%= f.submit t('.update'), class:"btn btn-primary" %>
+  </div>
+  <% end %>
+
+<%= link_to fa_icon('folder-open-o'), website_page_path(@website, @page, locale:I18n.locale) %> |
+<%= link_to fa_icon('arrow-circle-left'), website_pages_path(@website, locale:I18n.locale) %>

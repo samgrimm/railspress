@@ -272,6 +272,19 @@ pt:
       format:
         delimiter: "."
   older: Mais Antigos >>
+  pages:
+    create:
+      page_succes: Page succes
+    destroy:
+      page_destroyed: Page destroyed
+    edit:
+      update: Update
+    index:
+      Pages: Pages
+    new:
+      create: Create
+    update:
+      page_updated: Page updated
   register: Criar Conta
   resend_instruction: Enviar instruções novamente
   resend_unlock: Enviar instruções de desbloqueio novamente
