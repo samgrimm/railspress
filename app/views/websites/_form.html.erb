@@ -1,0 +1,15 @@
+<% if @website.errors.any? %>
+  <% @website.errors.full_messages.each do |error| %>
+    <li><%= alert_generator error %></li>
+  <% end %>
+<% end %>
+
+            <div class="from-group">
+        <%= f.label :name %>
+        <%= f.text_field :name, class:"form-control" %>
+      </div>
+                  <div class="from-group">
+        <%= f.label :description %>
+        <%= f.text_area :description, class:"form-control" %>
+      </div>
+              

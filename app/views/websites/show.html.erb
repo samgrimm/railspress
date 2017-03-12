@@ -1,0 +1,18 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @website.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @website.description %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @website.user %>
+</p>
+
+<%= link_to fa_icon('edit 2x'), edit_website_path(@website, locale: I18n.locale) %> |
+<%= link_to fa_icon('arrow-circle-left 2x'), websites_path(locale: I18n.locale) %>
