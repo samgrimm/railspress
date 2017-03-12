@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :website do
-    name "MyString"
-    description "MyText"
-    user nil
+    name "My First Website"
+    description "My website description"
+    user
   end
 end

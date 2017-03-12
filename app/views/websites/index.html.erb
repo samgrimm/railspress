@@ -4,17 +4,17 @@
 
 <div>
   <% @websites.each do |website| %>
-    <div class="content">
+    <div class="card">
       <p><%= website.name %></p>
       <p><%= website.description %></p>
       <p><%= website.user %></p>
       <p><%= link_to t('show'), website_path(website, locale: I18n.locale) %></p>
-      <p><%= link_to t('edit'), edit_website_path(website,locale: I18n.locale) %></p>
-      <p><%= link_to t('delete'), website_path(website, locale: I18n.locale), method: :delete, data: { confirm: t('are_you_sure') } %></p>
+      <p><%= link_to t('edit'), edit_website_path(website,locale: I18n.locale), id: "edit_#{website.id}" %></p>
+      <p><%= link_to t('delete'), website_path(website, locale: I18n.locale), id: "delete_#{website.id}", method: :delete, data: { confirm: t('are_you_sure') } %></p>
     </div>
   <% end %>
 </div>
 
 <br>
 
-<%= link_to fa_icon('plus 2x'), new_website_path( locale:I18n.locale) %>
+<%= link_to fa_icon('plus 2x'), new_website_path( locale:I18n.locale), id:"add_website" %>
