@@ -2,6 +2,7 @@ class WebsitesController < ApplicationController
   before_action :set_website, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :check_website_owner, only: [:edit, :update, :destroy ]
+  layout 'website', only: :show
   # GET /websites
   def index
     @websites = current_user.websites
@@ -49,7 +50,7 @@ class WebsitesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def website_params
-      params.require(:website).permit(:name, :description)
+      params.require(:website).permit(:name, :description, :color_combo_id)
     end
 
     def check_website_owner

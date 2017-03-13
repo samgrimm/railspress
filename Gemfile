@@ -54,8 +54,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'rspec-rails', '~> 3.5', group: ["test", "development"]
 gem 'capybara', '~> 2.12', group: ["test", "development"]
+gem "capybara-webkit", group: ["test", "development"]
 gem 'database_cleaner', '~> 1.5', group: ["test", "development"]
 gem 'factory_girl_rails', '~> 4.8', group: ["test", "development"]
+gem 'cucumber-rails', :require => false, group: ["test", "development"]
 gem 'friendly_id', '~> 5.1.0'
 gem 'bootstrap', '~>4.0.0.alpha6'
 gem 'font-awesome-rails', '~> 4.7'
