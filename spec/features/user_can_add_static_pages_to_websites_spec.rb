@@ -1,4 +1,7 @@
 require 'rails_helper'
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :deletion
 
 describe 'navigate' do
 
@@ -7,6 +10,9 @@ describe 'navigate' do
       @user  = FactoryGirl.create(:user)
       @website =  FactoryGirl.create(:website, user_id: @user.id)
       @page  = FactoryGirl.create(:page, website_id: @website.id)
+      @layout1 = FactoryGirl.create(:layout, name: "Layout 1", image:"layout1.png")
+      @layout2 = FactoryGirl.create(:layout, name: "Layout 2", image:"layout2.png")
+      @layout3 = FactoryGirl.create(:layout, name: "Layout 3", image:"layout.3png")
       login_as(@user, :scope => :user)
     end
     it 'can be reached successfully' do
@@ -61,6 +67,7 @@ describe 'navigate' do
 
   describe "creation" do
     before do
+      DatabaseCleaner.clean
       @user  = FactoryGirl.create(:user)
       @website =  FactoryGirl.create(:website, user_id: @user.id)
       @page = FactoryGirl.create(:page, website_id: @website.id, title:"My Second Page")
@@ -94,6 +101,7 @@ describe 'navigate' do
 
   describe "edit" do
     before do
+      DatabaseCleaner.clean
       @user  = FactoryGirl.create(:user)
       @website =  FactoryGirl.create(:website, user_id: @user.id)
       @page = FactoryGirl.create(:page, website_id: @website.id, title:"My Second Page")

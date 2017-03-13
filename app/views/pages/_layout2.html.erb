@@ -1,0 +1,16 @@
+<div class="page_layout_2">
+  <div class="card">
+    <div class="feature">
+      <h3><%= @page.title %></h3>
+    </div>
+    <div class="card-block">
+      <%= @page.content %>
+    </div>
+    <div class="card-footer">
+      <div class="button-group">
+        <%= link_to fa_icon('edit 2x'), edit_website_page_path(@website, @page, locale: I18n.locale) %> |
+        <%= link_to fa_icon('arrow-circle-left 2x'), website_pages_path(@website, locale: I18n.locale) %>
+      </div>
+    </div>
+  </div>
+</div>

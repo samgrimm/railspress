@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :check_website_owner, only: [:new, :create, :edit, :update, :destroy]
+
   # GET /pages
   def index
     @pages = Page.all
@@ -59,6 +60,6 @@ class PagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def page_params
-      params.require(:page).permit(:website_id, :title, :content)
+      params.require(:page).permit(:website_id, :title, :content, :layout_id)
     end
 end

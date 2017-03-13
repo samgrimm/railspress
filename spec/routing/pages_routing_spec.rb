@@ -1,38 +1,47 @@
 require "rails_helper"
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
 
 RSpec.describe PagesController, type: :routing do
   describe "routing" do
+    before do
+      DatabaseCleaner.clean
+      @user  = FactoryGirl.create(:user)
+      @website =  FactoryGirl.create(:website, user_id: @user.id)
+      login_as(@user, :scope => :user)
+    end
 
     it "routes to #index" do
-      expect(:get => "/pages").to route_to("pages#index")
+      expect(:get => "websites/#{@website.id}/pages").to route_to(controller: "pages", action: "index", website_id: @website.id.to_s)
     end
 
     it "routes to #new" do
-      expect(:get => "/pages/new").to route_to("pages#new")
+      expect(:get => "websites/#{@website.id}/pages/new").to route_to(controller: "pages", action: "new", website_id: @website.id.to_s)
     end
 
     it "routes to #show" do
-      expect(:get => "/pages/1").to route_to("pages#show", :id => "1")
+      expect(:get => "websites/#{@website.id}/pages/1").to route_to(controller: "pages", action: "show", website_id: @website.id.to_s, :id => "1")
     end
 
     it "routes to #edit" do
-      expect(:get => "/pages/1/edit").to route_to("pages#edit", :id => "1")
+      expect(:get => "websites/#{@website.id}/pages/1/edit").to route_to(controller: "pages", action: "edit", website_id: @website.id.to_s, :id => "1")
     end
 
     it "routes to #create" do
-      expect(:post => "/pages").to route_to("pages#create")
+      expect(:post => "websites/#{@website.id}/pages").to route_to(controller: "pages", action: "create", website_id: @website.id.to_s)
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/pages/1").to route_to("pages#update", :id => "1")
+      expect(:put => "websites/#{@website.id}/pages/1").to route_to(controller: "pages", action: "update", website_id: @website.id.to_s, :id => "1")
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/pages/1").to route_to("pages#update", :id => "1")
+      expect(:patch => "websites/#{@website.id}/pages/1").to route_to(controller: "pages", action: "update", website_id: @website.id.to_s, :id => "1")
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/pages/1").to route_to("pages#destroy", :id => "1")
+      expect(:delete => "websites/#{@website.id}/pages/1").to route_to(controller: "pages", action: "destroy", website_id: @website.id.to_s, :id => "1")
     end
 
   end

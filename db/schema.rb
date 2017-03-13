@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170312020334) do
+ActiveRecord::Schema.define(version: 20170312192741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,12 +27,23 @@ ActiveRecord::Schema.define(version: 20170312020334) do
     t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
   end
 
+  create_table "layouts", force: :cascade do |t|
+    t.string   "name"
+    t.text     "document"
+    t.text     "sheet"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "image"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.integer  "website_id"
     t.string   "title"
     t.text     "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "layout_id"
+    t.index ["layout_id"], name: "index_pages_on_layout_id", using: :btree
     t.index ["website_id"], name: "index_pages_on_website_id", using: :btree
   end
 
@@ -62,6 +73,7 @@ ActiveRecord::Schema.define(version: 20170312020334) do
     t.index ["user_id"], name: "index_websites_on_user_id", using: :btree
   end
 
+  add_foreign_key "pages", "layouts"
   add_foreign_key "pages", "websites"
   add_foreign_key "websites", "users"
 end
