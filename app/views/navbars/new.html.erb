@@ -1,0 +1,13 @@
+<h1><%= t('adding') %> Navbar</h1>
+
+<%= form_for([@website,@navbar], url:website_navbars_path(locale: I18n.locale) ) do |f| %>
+
+  <%= render 'form',  f: f %>
+
+  <div class="form-group">
+    <%= f.submit t('.create'), class:'btn btn-primary' %>
+  </div>
+  <% end %>
+
+
+<%= link_to fa_icon('arrow-circle-left'), website_navbars_path(@website, locale:I18n.locale) %>

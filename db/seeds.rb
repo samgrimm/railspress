@@ -1,5 +1,5 @@
 3.times do |layout|
-  Layout.create!(name: "Layout #{layout + 1}",
+  Layout.create!(name: "layout#{layout + 1}",
               image: "layout#{layout + 1}.png")
 end
 puts "created 3 layouts"

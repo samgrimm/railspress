@@ -1,0 +1,20 @@
+<h2><%= t('.Navbars') %></h2>
+
+<hr>
+
+<div>
+  <% @navbars.each do |navbar| %>
+    <div class="content">
+      <p><%= navbar.title %></p>
+      <p><%= navbar.style %></p>
+      <p><%= navbar.website %></p>
+      <p><%= link_to t('show'), website_navbar_path(@website, navbar, locale: I18n.locale) %></p>
+      <p><%= link_to t('edit'), edit_website_navbar_path(@website, navbar,locale: I18n.locale) %></p>
+      <p><%= link_to t('delete'), website_navbar_path(@website, navbar, locale: I18n.locale), method: :delete, data: { confirm: t('are_you_sure') } %></p>
+    </div>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to fa_icon('plus 2x'), new_website_navbar_path(@website, locale:I18n.locale) %>

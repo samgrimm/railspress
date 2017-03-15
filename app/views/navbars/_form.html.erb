@@ -1,0 +1,14 @@
+<% if @navbar.errors.any? %>
+  <% @navbar.errors.full_messages.each do |error| %>
+    <li><%= alert_generator error %></li>
+  <% end %>
+<% end %>
+<div class="from-group">
+  <%= f.label :title %>
+  <%= f.text_field :title, class:"form-control" %>
+</div>
+<div class="from-group">
+  <%= f.label :style %>
+  <%= f.text_field :style, class:"form-control" %>
+</div>
+      

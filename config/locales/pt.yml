@@ -214,6 +214,19 @@ pt:
   languages: Idioma
   login: Entrar
   logout: Sair
+  navbars:
+    create:
+      navbar_succes: Navbar succes
+    destroy:
+      navbar_destroyed: Navbar destroyed
+    edit:
+      update: Update
+    index:
+      Navbars: Navbars
+    new:
+      create: Create
+    update:
+      navbar_updated: Navbar updated
   newer: "<< Mais Novos"
   number:
     currency:
@@ -279,6 +292,8 @@ pt:
       page_destroyed: Page destroyed
     edit:
       update: Update
+    form:
+      layout: Layout
     index:
       Pages: Pages
     new:
@@ -313,6 +328,8 @@ pt:
       website_destroyed: Website destroyed
     edit:
       update: Update
+    form:
+      combo: Combo
     index:
       Websites: Websites
     new:

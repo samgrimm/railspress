@@ -1,0 +1,31 @@
+
+<p>
+  <strong>Title:</strong>
+  <%= @navbar.title %>
+</p>
+
+<p>
+  <strong>Style:</strong>
+  <%= @navbar.style %>
+</p>
+
+
+
+<%= link_to fa_icon('edit 2x'), edit_website_navbar_path(@website,@navbar, locale:I18n.locale) %> |
+<%= link_to fa_icon('arrow-circle-left 2x'), website_navbars_path(@website, locale:I18n.locale) %>
+
+<% if @website.pages.empty? %>
+  <%= link_to 'Add pages first', new_website_page_path(@website, locale:I18n.locale) %>
+<% else %>
+  <h3>Choose the pages to add to your navbar</h3>
+  <% @website.pages.each do |page| %>
+    <%= link_to page.title,
+        website_navbar_links_path(
+              @website,
+              @navbar,
+              locale: I18n.locale,
+              page_id: page.id),
+        method: :post,
+        id:"add_page_#{page.id}"%>
+  <% end %>
+<% end %>

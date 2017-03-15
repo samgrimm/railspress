@@ -1,0 +1,16 @@
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-danger blog-nav">
+  <button class="navbar-toggler navbar-toggler-right" type="button"
+    data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false"
+    aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="container">
+    <%= link_to "Logo goes here", root_path, class:"navbar-brand h3"%>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li><%= link_to t('websites.show.add_nav'), new_website_navbar_path(@website, locale:I18n.locale), class:"nav-link"%></li> 
+      </ul>
+    </div>
+  </div>
+</nav>

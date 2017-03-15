@@ -3,6 +3,9 @@ require 'rails_helper'
 describe 'navigate' do
   let(:user) { FactoryGirl.create(:user) }
   let(:website) { FactoryGirl.create(:website, user_id: user.id) }
+  let(:color_combo1) { FactoryGirl.create(:color_combo, name: "Combo1") }
+  let(:color_combo2) { FactoryGirl.create(:color_combo, name: "Combo2",) }
+  let(:color_combo3) { FactoryGirl.create(:color_combo, name: "Combo3") }
   describe 'index' do
     before do
       login_as(user, :scope => :user)
@@ -62,6 +65,9 @@ describe 'navigate' do
 
   describe "creation" do
     before do
+      @color_combo1 = FactoryGirl.create(:color_combo, name: "Combo1")
+      @color_combo2 = FactoryGirl.create(:color_combo, name: "Combo2",)
+      @color_combo3 = FactoryGirl.create(:color_combo, name: "Combo3")
       login_as(user, :scope => :user)
       visit new_website_path
     end
@@ -71,12 +77,14 @@ describe 'navigate' do
     it "can be created from new form page" do
       fill_in 'website[name]', with: "My Amazing Website"
       fill_in 'website[description]', with: "Some amazing description goes here"
+      choose("website_color_combo_id_#{@color_combo1.id}")
       expect { click_on(I18n.t('websites.new.create')) }.to change(Website, :count).by(1)
     end
 
     it "will have an user associated with the post" do
       fill_in 'website[name]', with: "My Amazing Website"
       fill_in 'website[description]', with: "user_association"
+      choose("website_color_combo_id_#{@color_combo1.id}")
       click_on(I18n.t('websites.new.create'))
 
       expect(User.last.websites.last.description).to eq("user_association")
@@ -85,8 +93,11 @@ describe 'navigate' do
 
   describe "edit" do
     before do
+      @color_combo1 = FactoryGirl.create(:color_combo, name: "Combo1")
+      @color_combo2 = FactoryGirl.create(:color_combo, name: "Combo2",)
+      @color_combo3 = FactoryGirl.create(:color_combo, name: "Combo3")
       @user = FactoryGirl.create(:user)
-      @website = FactoryGirl.create(:website, user_id: @user.id)
+      @website = FactoryGirl.create(:website, user_id: @user.id, color_combo: @color_combo1)
       login_as(@user, :scope => :user)
     end
     it "can be reached by clicking edit on the index page" do

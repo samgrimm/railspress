@@ -12,13 +12,12 @@ describe "choose website colors and styles" do
     @color_combo3 = FactoryGirl.create(:color_combo, name: "Combo3")
     login_as(@user, :scope => :user)
   end
-  it "displays to the user the available color combinations to the user" , js: true do
+  it "displays to the user the available color combinations to the user" do
     visit edit_website_path(@website, locale: 'en')
     expect(page.find("#website_color_combo_id_#{@color_combo1.id}")).to be_truthy
     expect(page.find("#website_color_combo_id_#{@color_combo2.id}")).to be_truthy
     choose("website_color_combo_id_#{@color_combo1.id}")
     click_on(I18n.t('websites.edit.update'))
-    save_and_open_page
     @website.reload
     expect(@website.color_combo.name).to eq("Combo1")
   end

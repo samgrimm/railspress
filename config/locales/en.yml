@@ -171,6 +171,19 @@ en:
   languages: Languages
   login: Login
   logout: Logout
+  navbars:
+    create:
+      navbar_succes: Navbar succes
+    destroy:
+      navbar_destroyed: Navbar destroyed
+    edit:
+      update: Update
+    index:
+      Navbars: Navbars
+    new:
+      create: Create
+    update:
+      navbar_updated: Navbar updated
   newer: "<< Newer"
   number:
     currency:
@@ -236,6 +249,8 @@ en:
       page_destroyed: Page destroyed
     edit:
       update: Update
+    form:
+      layout: Layout
     index:
       Pages: Pages
     new:
@@ -263,13 +278,21 @@ en:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: Pm
+  navbars:
+    index:
+      delete: Delete
   websites:
+    show:
+      add_nav: Add Navbar
+      edit_nav: Edit Navbar
     create:
       website_succes: Website succes
     destroy:
       website_destroyed: Website destroyed
     edit:
       update: Update
+    form:
+      combo: Combo
     index:
       Websites: Websites
     new:
