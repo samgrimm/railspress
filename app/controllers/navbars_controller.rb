@@ -2,6 +2,7 @@ class NavbarsController < ApplicationController
   before_action :set_website
   before_action :set_navbar, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  layout 'website'
   # GET /navbars
   def index
     @navbars = Navbar.all
@@ -52,6 +53,6 @@ class NavbarsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def navbar_params
-      params.require(:navbar).permit(:title, :style, :website_id, :position)
+      params.require(:navbar).permit(:title, :nav_style_id, :website_id, :position)
     end
 end

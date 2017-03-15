@@ -1,7 +1,21 @@
 module WebsitesHelper
 
+  def stylesheet(website)
+    if website.color_combo.present?
+      website.color_combo.name.downcase
+    else
+      'application'
+    end
+  end
+
   def website_footer?(website)
     !website.navbars.where(position: 'footer').empty?
+  end
+
+  def navbar_style(navbar)
+    if navbar.nav_style.present?
+      return navbar.nav_style.name
+    end
   end
 
   def main_nav(website)

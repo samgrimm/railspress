@@ -7,9 +7,9 @@
   <%= f.label :title %>
   <%= f.text_field :title, class:"form-control" %>
 </div>
-<div class="from-group">
-  <%= f.label :style %>
-  <%= f.text_field :style, class:"form-control" %>
+<div class="form-group">
+  <%= f.label :nav_style_id, t(".style") %>
+  <%= f.collection_radio_buttons(:nav_style_id, NavStyle.all, :id, :name, {class:"form-control"})  %>
 </div>
 <div class="form-group">
   <%= f.radio_button :position, :main %>

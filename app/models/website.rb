@@ -7,4 +7,8 @@ class Website < ApplicationRecord
   def footer
     self.navbars.where(position: 'footer').first
   end
+
+  def main_nav
+    self.navbars.where(position: 'main').first
+  end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315140342) do
+ActiveRecord::Schema.define(version: 20170315174411) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,13 +52,21 @@ ActiveRecord::Schema.define(version: 20170315140342) do
     t.index ["page_id"], name: "index_links_on_page_id", using: :btree
   end
 
+  create_table "nav_styles", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "navbars", force: :cascade do |t|
     t.string   "title"
     t.string   "style"
     t.integer  "website_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-    t.integer  "position",   default: 0
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "position",     default: 0
+    t.integer  "nav_style_id"
+    t.index ["nav_style_id"], name: "index_navbars_on_nav_style_id", using: :btree
     t.index ["website_id"], name: "index_navbars_on_website_id", using: :btree
   end
 
@@ -103,6 +111,7 @@ ActiveRecord::Schema.define(version: 20170315140342) do
 
   add_foreign_key "links", "navbars"
   add_foreign_key "links", "pages"
+  add_foreign_key "navbars", "nav_styles"
   add_foreign_key "navbars", "websites"
   add_foreign_key "pages", "layouts"
   add_foreign_key "pages", "websites"

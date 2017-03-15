@@ -10,6 +10,7 @@ describe "adding a navbar" do
     @page = FactoryGirl.create(:page, website: @website, title: "Page 1")
     @page2 = FactoryGirl.create(:page, website: @website, title: "Page 2")
     @page3 = FactoryGirl.create(:page, website: @website, title: "Page 3")
+    @style = FactoryGirl.create(:nav_style, name:'style1')
     login_as(@user, :scope => :user)
   end
 
@@ -104,6 +105,31 @@ describe "navbar appears in the correct location" do
   it "main nav will appear on main" do
     visit website_path(@website, locale: 'en')
     expect(page).to have_css("#main_nav")
+  end
+end
+
+describe "adding style to navbar" do
+  before do
+    @user  = FactoryGirl.create(:user)
+    @website =  FactoryGirl.create(:website, user_id: @user.id)
+    @page = FactoryGirl.create(:page, website: @website, title: "Page 1")
+    @page2 = FactoryGirl.create(:page, website: @website, title: "Page 2")
+    @page3 = FactoryGirl.create(:page, website: @website, title: "Page 3")
+    @style = FactoryGirl.create(:nav_style, name:'style1')
+    @navbar = FactoryGirl.create(:navbar, website: @website, title: "Main Nav", position: 'main')
+    pages = [@page, @page2, @page3]
+    pages.each do |page|
+      @navbar.links.create(page_id: page.id)
+    end
+    @navbar.reload
+    login_as(@user, :scope => :user)
+  end
+
+  it "allows user to select a style for the navbar" do
+    visit edit_website_navbar_path(@website, @navbar, locale: 'en')
+    choose("navbar_nav_style_id_#{@style.id}")
+    click_on(I18n.t('navbars.edit.update'))
+    expect(page.find('.nav-style1')).to be_truthy
   end
 end
 

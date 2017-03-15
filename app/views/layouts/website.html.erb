@@ -8,13 +8,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= favicon_link_tag 'favicons/favicon.ico' %>
-    <%= stylesheet_link_tag    "#{@website.color_combo.name.downcase}", media: 'all', 'data-turbolinks-track': 'reload' , id:"website_stylesheet"%>
+    <%= stylesheet_link_tag    "#{stylesheet(@website)}", media: 'all', 'data-turbolinks-track': 'reload' , id:"website_stylesheet"%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
     <%= render 'shared/nav' %>
     <% if @website.navbars.empty? %>
+
       <%= render 'shared/empty_website_nav' %>
     <% else %>
       <%= render 'shared/website_nav' %>
