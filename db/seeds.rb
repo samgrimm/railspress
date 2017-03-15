@@ -17,5 +17,6 @@ puts "created 1 user"
 
 @website = @user.websites.create(
             name: "My first website",
-            description: "Hello"
+            description: "Hello",
+            color_combo_id: ColorCombo.first.id
             )

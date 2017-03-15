@@ -89,6 +89,7 @@ describe 'navigate' do
       click_on(I18n.t('pages.new.create'))
 
       expect(Page.last.content).to eq("webbie_association")
+      expect(Page.last.website).to eq(@website)
     end
     it "can only be created by the website's owner" do
       logout(:user)

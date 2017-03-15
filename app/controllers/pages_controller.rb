@@ -23,7 +23,7 @@ class PagesController < ApplicationController
 
   # POST /pages
   def create
-      @page = Page.new(page_params)
+      @page = @website.pages.build(page_params)
     if @page.save
       redirect_to website_page_path(@website, @page, locale:I18n.locale), notice: t(".page_succes")
     else

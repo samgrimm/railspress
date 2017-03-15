@@ -284,6 +284,7 @@ en:
   websites:
     show:
       add_nav: Add Navbar
+      add_footer: Add Footer Nav
       edit_nav: Edit Navbar
     create:
       website_succes: Website succes

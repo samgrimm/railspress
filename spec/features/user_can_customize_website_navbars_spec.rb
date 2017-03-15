@@ -77,6 +77,36 @@ describe "showing the navbar" do
   end
 end
 
+describe "navbar appears in the correct location" do
+  before do
+    @user  = FactoryGirl.create(:user)
+    @color_combo1 = FactoryGirl.create(:color_combo, name: "Combo1")
+    @website =  FactoryGirl.create(:website, user_id: @user.id, color_combo: @color_combo1)
+    @page = FactoryGirl.create(:page, website: @website, title: "Page 1")
+    @page2 = FactoryGirl.create(:page, website: @website, title: "Page 2")
+    @page3 = FactoryGirl.create(:page, website: @website, title: "Page 3")
+    @navbar = FactoryGirl.create(:navbar, website: @website, title: "Main Nav", position: 'main')
+
+    login_as(@user, :scope => :user)
+  end
+  it "edit footer will appear if no footer has been added" do
+    visit website_path(@website, locale: 'en')
+    expect(@website.footer).to eq(nil)
+    expect(page).not_to have_css("#footer")
+    expect(page).to have_content(I18n.t('websites.show.add_footer'))
+  end
+  it "footer nav will appear on footer" do
+    @navbar = FactoryGirl.create(:navbar, website: @website, title: "Footer Nav", position: 'footer')
+    @navbar.reload
+    visit website_path(@website, locale: 'en')
+    expect(page).to have_css("#footer")
+  end
+  it "main nav will appear on main" do
+    visit website_path(@website, locale: 'en')
+    expect(page).to have_css("#main_nav")
+  end
+end
+
 describe "deleting navbars" do
   before do
     @user  = FactoryGirl.create(:user)

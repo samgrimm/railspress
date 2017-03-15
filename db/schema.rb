@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315001750) do
+ActiveRecord::Schema.define(version: 20170315140342) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,8 +56,9 @@ ActiveRecord::Schema.define(version: 20170315001750) do
     t.string   "title"
     t.string   "style"
     t.integer  "website_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "position",   default: 0
     t.index ["website_id"], name: "index_navbars_on_website_id", using: :btree
   end
 

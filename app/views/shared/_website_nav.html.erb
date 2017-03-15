@@ -1,4 +1,4 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-danger blog-nav">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-danger blog-nav" id="main_nav">
   <button class="navbar-toggler navbar-toggler-right" type="button"
     data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -9,10 +9,8 @@
     <%= link_to "Logo goes here", root_path, class:"navbar-brand h3"%>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
-        <% @website.navbars.first.pages.each do |page| %>
-          <li><%= link_to page.title, website_page_path(@website, page, locale:I18n.locale), class:"nav-link"%></li>
-        <% end %>
-        <li><%= link_to t('websites.show.edit_nav'), edit_website_navbar_path(@website, @website.navbars.first, locale:I18n.locale), class:"nav-link"%></li>   
+        <%= main_nav(@website) %>
+        <li><%= link_to t('websites.show.edit_nav'), edit_website_navbar_path(@website, @website.navbars.first, locale:I18n.locale), class:"nav-link"%></li>
       </ul>
     </div>
   </div>

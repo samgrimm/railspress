@@ -17,7 +17,7 @@
     <% if @website.navbars.empty? %>
       <%= render 'shared/empty_website_nav' %>
     <% else %>
-      <%= render 'shared/website_nav' %>  
+      <%= render 'shared/website_nav' %>
     <% end %>
     <div id="main_div">
       <%= alerts %>
@@ -25,6 +25,12 @@
         <%= yield %>
       </div>
     </div>
-
+    <footer>
+      <% if website_footer?(@website) %>
+        <%= render 'shared/website_footer' %>
+      <% else %>
+        <%= render 'shared/empty_website_footer' %>
+      <% end %>
+    </footer>
   </body>
 </html>

@@ -52,6 +52,6 @@ class NavbarsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def navbar_params
-      params.require(:navbar).permit(:title, :style, :website_id)
+      params.require(:navbar).permit(:title, :style, :website_id, :position)
     end
 end
