@@ -18,3 +18,75 @@
 <br>
 
 <%= link_to fa_icon('plus 2x'), new_website_navbar_path(@website, locale:I18n.locale) %>
+
+<% if @website.pages.empty? %>
+  <%= link_to 'Add pages first', new_website_page_path(@website, locale:I18n.locale) %>
+<% else %>
+  <h3>Choose the pages to add to your navbar</h3>
+
+  <table class="table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Page Title</th>
+      <th>Main Nav</th>
+      <th>Footer</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @website.pages.each do |page| %>
+      <tr>
+        <td><%= page.title %></td>
+        <td>
+          <% if website_main_nav?(@website) %>
+            <% if page_link_exists?(@website.main_nav, page) %>
+              <%= link_to 'Remove from Main Nav',
+                website_navbar_link_path(
+                      @website,
+                      @website.main_nav,
+                      current_link(@website.main_nav, page),
+                      locale: I18n.locale,
+                      page_id: page.id),
+                method: :delete,
+                id:"remove_from_main_#{page.id}"%>
+            <% else %>
+              <%= link_to 'Add to Main Nav',
+                website_navbar_links_path(
+                      @website,
+                      @website.main_nav,
+                      locale: I18n.locale,
+                      page_id: page.id),
+                method: :post,
+                id:"add_to_main_#{page.id}"%>
+            <% end %>
+          <% end %>
+        </td>
+        <td>
+          <% if website_footer?(@website) %>
+            <% if page_link_exists?(@website.footer, page) %>
+              <%= link_to 'Remove from Footer',
+                website_navbar_link_path(
+                      @website,
+                      @website.footer,
+                      current_link(@website.footer, page),
+                      locale: I18n.locale,
+                      page_id: page.id),
+                method: :delete,
+                id:"add_to_footer_#{page.id}"%>
+            <% else %>
+              <%= link_to 'Add to Main Nav',
+                website_navbar_links_path(
+                      @website,
+                      @website.footer,
+                      locale: I18n.locale,
+                      page_id: page.id),
+                method: :post,
+                id:"remove_from_footer_#{page.id}"%>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% end %>

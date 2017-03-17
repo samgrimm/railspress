@@ -38,9 +38,29 @@ describe "adding items to the navbar" do
   it "allows user to add items to the navbar" do
     @navbar = FactoryGirl.create(:navbar, website:@website, title: "Main Nav")
     @navbar.reload
-    visit website_navbar_path(@website, @navbar, locale: 'en')
-    click_on("add_page_#{@page3.id}")
+    visit website_navbars_path(@website, locale: 'en')
+    click_on("add_to_main_#{@page3.id}")
     expect(@navbar.pages.first.title).to eq('page3')
+  end
+end
+
+describe "removing items to the navbar" do
+  before do
+    @user  = FactoryGirl.create(:user)
+    @website =  FactoryGirl.create(:website, user_id: @user.id)
+    @page = FactoryGirl.create(:page, website: @website, title: "page1")
+    @page2 = FactoryGirl.create(:page, website: @website, title: "page2")
+    @page3 = FactoryGirl.create(:page, website: @website, title: "page3")
+    login_as(@user, :scope => :user)
+  end
+
+  it "allows user to remove items from the navbar" do
+    @navbar = FactoryGirl.create(:navbar, website:@website, title: "Main Nav")
+    @navbar.add_link(@page3)
+    @navbar.reload
+    visit website_navbars_path(@website, locale: 'en')
+    click_on("remove_from_main_#{@page3.id}")
+    expect(@navbar.pages).to be_empty
   end
 end
 

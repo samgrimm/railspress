@@ -24,7 +24,7 @@ class NavbarsController < ApplicationController
   def create
       @navbar = @website.navbars.build(navbar_params)
     if @navbar.save
-      redirect_to website_navbar_path(@website, @navbar, locale:I18n.locale), notice: t(".navbar_succes")
+      redirect_to website_navbars_path(@website,locale:I18n.locale), notice: t(".navbar_succes")
     else
       render :new
     end
@@ -32,7 +32,7 @@ class NavbarsController < ApplicationController
   # PATCH/PUT /navbars/1
   def update
     if @navbar.update(navbar_params)
-      redirect_to website_navbar_path(@website, @navbar, locale:I18n.locale), notice: t(".navbar_updated")
+      redirect_to website_navbars_path(@website,locale:I18n.locale), notice: t(".navbar_updated")
     else
       render :edit
     end

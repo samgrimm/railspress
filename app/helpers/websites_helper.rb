@@ -8,8 +8,20 @@ module WebsitesHelper
     end
   end
 
+  def page_link_exists?(navbar, page)
+    !navbar.pages.where(id: page.id).empty?
+  end
+
+  def current_link(navbar, page)
+    link = Link.where(page_id: page.id, navbar_id: navbar.id).first
+  end
+
   def website_footer?(website)
     !website.navbars.where(position: 'footer').empty?
+  end
+
+  def website_main_nav?(website)
+    !website.navbars.where(position: 'main').empty?
   end
 
   def navbar_style(navbar)

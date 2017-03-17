@@ -13,6 +13,12 @@ class LinksController < ApplicationController
     end
   end
 
+  def destroy
+    @link = Link.find(params[:id])
+    @link.destroy
+    redirect_to website_navbars_url(@website, locale: I18n.locale), notice: t(".link_destroyed")
+  end
+
   private
 
   def set_navbar
