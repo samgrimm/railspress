@@ -1,19 +1,7 @@
 <h2><%= t('.Navbars') %></h2>
 
-<hr>
 
-<div>
-  <% @navbars.each do |navbar| %>
-    <div class="content">
-      <p><%= navbar.title %></p>
-      <p><%= navbar.style %></p>
-      <p><%= navbar.website %></p>
-      <p><%= link_to t('show'), website_navbar_path(@website, navbar, locale: I18n.locale) %></p>
-      <p><%= link_to t('edit'), edit_website_navbar_path(@website, navbar,locale: I18n.locale) %></p>
-      <p><%= link_to t('delete'), website_navbar_path(@website, navbar, locale: I18n.locale), method: :delete, data: { confirm: t('are_you_sure') } %></p>
-    </div>
-  <% end %>
-</div>
+  <%= render @navbars %>
 
 <br>
 
@@ -74,7 +62,7 @@
                 method: :delete,
                 id:"add_to_footer_#{page.id}"%>
             <% else %>
-              <%= link_to 'Add to Main Nav',
+              <%= link_to 'Add to Footer',
                 website_navbar_links_path(
                       @website,
                       @website.footer,

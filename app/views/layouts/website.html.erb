@@ -13,25 +13,58 @@
   </head>
 
   <body>
-    <%= render 'shared/nav' %>
-    <% if @website.navbars.empty? %>
-
-      <%= render 'shared/empty_website_nav' %>
-    <% else %>
-      <%= render 'shared/website_nav' %>
-    <% end %>
-    <div id="main_div">
-      <%= alerts %>
-      <div class="container mt-3">
-        <%= yield %>
+    <% if user_signed_in? %>
+      <%= render 'shared/nav' %>
+      <div class="row main-row">
+        <nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar" id ="sidebar">
+          <%= render 'shared/website_sidebar' %>
+        </nav>
+        <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" id="mainArea">
+          <% if @website.navbars.empty? %>
+            <%= render 'shared/empty_website_nav' %>
+          <% else %>
+            <%= render 'shared/website_nav' %>
+          <% end %>
+          <div id="main_div">
+            <%= alerts %>
+            <div class="container mt-3">
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+            <% if website_footer?(@website) %>
+              <%= render 'shared/website_footer' %>
+            <% else %>
+              <%= render 'shared/empty_website_footer' %>
+            <% end %>
+          </footer>
+        </main>
       </div>
-    </div>
-    <footer>
-      <% if website_footer?(@website) %>
-        <%= render 'shared/website_footer' %>
-      <% else %>
-        <%= render 'shared/empty_website_footer' %>
-      <% end %>
-    </footer>
+    <% else %>
+      <div class="row">
+        <div class="col-md-12">
+          <% if @website.navbars.empty? %>
+            <%= render 'shared/empty_website_nav' %>
+          <% else %>
+            <%= render 'shared/website_nav' %>
+          <% end %>
+          <div id="main_div">
+            <%= alerts %>
+            <div class="container mt-3">
+              <%= yield %>
+            </div>
+          </div>
+          <footer>
+            <% if website_footer?(@website) %>
+              <%= render 'shared/website_footer' %>
+            <% else %>
+              <%= render 'shared/empty_website_footer' %>
+            <% end %>
+          </footer>
+        </div>
+      </div>
+    <% end %>
+
+
   </body>
 </html>

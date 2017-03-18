@@ -3,6 +3,7 @@ class PagesController < ApplicationController
   before_action :set_page, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :check_website_owner, only: [:new, :create, :edit, :update, :destroy]
+  layout 'website'
 
   # GET /pages
   def index
