@@ -22,6 +22,11 @@ pt:
   are_you_sure: Are you sure
   back: Voltar
   back_to_top: Voltar ao Topo
+  blogs:
+    create:
+      blog_succes: Blog succes
+    new:
+      add_blog: Add Blog
   confirm: Tem certeza?
   date:
     abbr_day_names:
@@ -212,6 +217,11 @@ pt:
       submit: Salvar %{model}
       update: Atualizar %{model}
   languages: Idioma
+  links:
+    create:
+      link_succes: Link succes
+    destroy:
+      link_destroyed: Link destroyed
   login: Entrar
   logout: Sair
   navbars:
@@ -221,8 +231,13 @@ pt:
       navbar_destroyed: Navbar destroyed
     edit:
       update: Update
+    form:
+      footer: Footer
+      main: Main
+      style: Style
     index:
       Navbars: Navbars
+      delete: Delete
     new:
       create: Create
     update:
@@ -300,6 +315,19 @@ pt:
       create: Create
     update:
       page_updated: Page updated
+  posts:
+    create:
+      post_succes: Post succes
+    destroy:
+      post_destroyed: Post destroyed
+    edit:
+      update: Update
+    index:
+      Posts: Posts
+    new:
+      create: Create
+    update:
+      post_updated: Post updated
   register: Criar Conta
   resend_instruction: Enviar instruções novamente
   resend_unlock: Enviar instruções de desbloqueio novamente
@@ -334,5 +362,9 @@ pt:
       Websites: Websites
     new:
       create: Create
+    show:
+      add_footer: Add Footer Nav
+      add_nav: Add Navbar
+      edit_nav: Edit Navbar
     update:
       website_updated: Website updated

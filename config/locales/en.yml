@@ -22,6 +22,11 @@ en:
   are_you_sure: Are you sure
   back: Back
   back_to_top: Back To Top
+  blogs:
+    create:
+      blog_succes: Blog succes
+    new:
+      add_blog: Add Blog
   confirm: Are you sure?
   date:
     abbr_day_names: '["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"]'
@@ -169,6 +174,11 @@ en:
       submit: Salvar %{model}
       update: Atualizar %{model}
   languages: Languages
+  links:
+    create:
+      link_succes: Link succes
+    destroy:
+      link_destroyed: Link destroyed
   login: Login
   logout: Logout
   navbars:
@@ -178,8 +188,13 @@ en:
       navbar_destroyed: Navbar destroyed
     edit:
       update: Update
+    form:
+      footer: Footer
+      main: Main
+      style: Style
     index:
       Navbars: Navbars
+      delete: Delete
     new:
       create: Create
     update:
@@ -257,6 +272,19 @@ en:
       create: Create
     update:
       page_updated: Page updated
+  posts:
+    create:
+      post_succes: Post succes
+    destroy:
+      post_destroyed: Post destroyed
+    edit:
+      update: Update
+    index:
+      Posts: Posts
+    new:
+      create: Create
+    update:
+      post_updated: Post updated
   register: Register
   resend_instruction: Resend confirmation instructions
   resend_unlock: Resend unlock instructions
@@ -278,14 +306,7 @@ en:
       long: "%d de %B de %Y, %H:%M"
       short: "%d de %B, %H:%M"
     pm: Pm
-  navbars:
-    index:
-      delete: Delete
   websites:
-    show:
-      add_nav: Add Navbar
-      add_footer: Add Footer Nav
-      edit_nav: Edit Navbar
     create:
       website_succes: Website succes
     destroy:
@@ -298,5 +319,9 @@ en:
       Websites: Websites
     new:
       create: Create
+    show:
+      add_footer: Add Footer Nav
+      add_nav: Add Navbar
+      edit_nav: Edit Navbar
     update:
       website_updated: Website updated

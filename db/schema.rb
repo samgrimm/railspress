@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170315174411) do
+ActiveRecord::Schema.define(version: 20170319003300) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "blogs", force: :cascade do |t|
+    t.integer  "website_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["website_id"], name: "index_blogs_on_website_id", using: :btree
+  end
 
   create_table "color_combos", force: :cascade do |t|
     t.string   "name"
@@ -81,6 +88,16 @@ ActiveRecord::Schema.define(version: 20170315174411) do
     t.index ["website_id"], name: "index_pages_on_website_id", using: :btree
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.text     "content"
+    t.integer  "status"
+    t.integer  "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["blog_id"], name: "index_posts_on_blog_id", using: :btree
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -109,12 +126,14 @@ ActiveRecord::Schema.define(version: 20170315174411) do
     t.index ["user_id"], name: "index_websites_on_user_id", using: :btree
   end
 
+  add_foreign_key "blogs", "websites"
   add_foreign_key "links", "navbars"
   add_foreign_key "links", "pages"
   add_foreign_key "navbars", "nav_styles"
   add_foreign_key "navbars", "websites"
   add_foreign_key "pages", "layouts"
   add_foreign_key "pages", "websites"
+  add_foreign_key "posts", "blogs"
   add_foreign_key "websites", "color_combos"
   add_foreign_key "websites", "users"
 end

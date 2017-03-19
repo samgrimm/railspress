@@ -1,0 +1,7 @@
+<h2>Your website does not have a blog yet</h2>
+
+<%= form_for([@website,@blog], url:website_blogs_path(locale: I18n.locale) ) do |f| %>
+<div class="form-group">
+  <%= f.submit t('.add_blog'), class:'btn btn-primary' %>
+</div>
+<% end %>

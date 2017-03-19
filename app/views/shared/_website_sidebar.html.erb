@@ -10,7 +10,11 @@
       <%= link_to 'Pages', website_pages_path(@website, locale: I18n.locale), class:"nav-link"%>
     </li>
     <li class="nav-item">
-      <%= link_to 'Blog', website_navbars_path(@website, locale: I18n.locale), class:"nav-link"%>
+      <% if has_blog?(@website) %>
+        <%= link_to 'Blog', website_blogs_path(@website, locale: I18n.locale), class:"nav-link"%>
+      <% else %>
+        <%= link_to 'Blog', new_website_blog_path(@website, locale: I18n.locale), class:"nav-link"%>
+      <% end %>
     </li>
     <li class="nav-item">
       <%= link_to 'Widgets', website_navbars_path(@website, locale: I18n.locale), class:"nav-link"%>

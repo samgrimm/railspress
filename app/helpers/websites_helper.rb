@@ -8,6 +8,10 @@ module WebsitesHelper
     end
   end
 
+  def has_blog?(website)
+    return !website.blog.nil?
+  end
+
   def page_link_exists?(navbar, page)
     !navbar.pages.where(id: page.id).empty?
   end
