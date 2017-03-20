@@ -13,6 +13,7 @@ class PagesController < ApplicationController
   def show
     @page = Page.includes(:widgets).find(params[:id])
     @widget = Widget.new
+    @image = Widget.new
   end
 
   # GET /pages/new

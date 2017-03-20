@@ -13,6 +13,6 @@ class PagesChannel < ApplicationCable::Channel
               col_span: data['widget']['col_span'],
               title: data['widget']['title'],
               content: data['widget']['content'],
-              type: data['widget']['type'])
+              type: 'Text')
   end
 end

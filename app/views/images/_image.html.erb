@@ -1,0 +1,7 @@
+<%= content_tag :div, class: image.col_span do -%>
+  <div class="card" data-id="<%=image.id%>">
+    <%= image.col_span %>
+    <h3><%= image.title %></h3>
+    <p><%=image_tag image.image ,width:'100%'%></p> 
+  </div>
+<% end -%>

@@ -15,19 +15,16 @@ jQuery(document).on 'turbolinks:load', ->
     $this = $(this)
     textarea = $this.find('#widget_content')
     title = $this.find('#widget_title')
-    type = $this.find('#typeField')
     col_span = $this.find('#widget_col_span')
     if $.trim(textarea.val()).length > 1
       widget =
         content: textarea.val()
         title: title.val()
         col_span: col_span.val()
-        type: type.val()
       App.global_chat.send_widget widget,
       widgets.data('page-id')
       textarea.val('')
       title.val('')
       col_span.val('')
-      type.val('')
     e.preventDefault()
     return false

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
         end
       end
       resources :pages do
+        resources :images, only: [:create]
         resources :widgets, only: [:sort, :create] do
           put :sort, on: :collection, as: '/sort'
         end

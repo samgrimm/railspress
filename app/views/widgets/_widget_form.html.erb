@@ -3,26 +3,18 @@
     <%= f.label :title, "Title" %>
     <%= f.text_field :title, class: 'form-control' %>
   </div>
-  <div class="form-group ">
-    <%= f.label :type %>
-    <%= f.text_field :type, class: 'form-control',  id:"typeField" %>
-  </div>
 
   <div class="form-group ">
     <%= f.label :col_span %>
     <%= f.text_field :col_span, class: 'form-control' %>
   </div>
 
-  <div class="form-group " id="text-fields">
+  <div class="form-group " id="text-fields" >
     <%= f.label :content, 'Content'%>
     <%= f.text_area :content, class: 'form-control' %>
   </div>
-  <!-- TO DO fix the call for the images -->
-  <div class="form-group " id="image_fields" style="display: none;">
-    <%= f.label :content, 'Content'%>
-    <%= f.file_field :content, class: 'form-control' %>
-  </div>
-  <div class="form-group " id="text-fields">
+
+  <div class="form-group">
     <%= f.submit t('.post_widget'), class: 'btn btn-primary' %>
   </div>
 <% end %>
