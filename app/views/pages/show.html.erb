@@ -3,3 +3,9 @@
 <% else %>
   <%= render "#{@page.layout.name}" , locals: @page %>
 <% end %>
+
+<%= render 'widgets/widget_form' %>
+
+<div class="row sortable" id="widgets" data-page-id="<%= @page.id %>">
+  <%= render @page.widgets %>
+</div>

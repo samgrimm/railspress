@@ -1,0 +1,7 @@
+<%= content_tag :div, class: widget.col_span do -%>
+  <div class="card" data-id="<%=widget.id%>">
+    <%= widget.col_span %>
+    <h3><%= widget.title %></h3>
+    <%= content(widget) %>
+  </div>
+<% end -%>

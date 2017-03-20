@@ -11,6 +11,8 @@ class PagesController < ApplicationController
   end
   # GET /pages/1
   def show
+    @page = Page.includes(:widgets).find(params[:id])
+    @widget = Widget.new
   end
 
   # GET /pages/new
@@ -61,6 +63,9 @@ class PagesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def page_params
-      params.require(:page).permit(:website_id, :title, :content, :layout_id)
+      params.require(:page).permit(:website_id,
+                                    :title,
+                                    :content,
+                                    :layout_id)
     end
 end
