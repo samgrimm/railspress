@@ -13,22 +13,31 @@ describe "widgets" do
     login_as(user, :scope => :user)
   end
   describe "can be added to pages" do
-    it "with a link to an add widget form" , js: true do
+    xit "with a link to an add widget form"  do
       @page = FactoryGirl.create(:page, website_id: website.id, title:"My Second Page")
       @page.reload
-      visit edit_website_page_path(website, @page, locale: 'en')
-      click_on('add_widget')
-      expect(page).to have_content("Add Widget")
-      fill_in 'Supertitle', with: "Hello "
-      fill_in 'Supercontent', with: "I am a widget"
-      fill_in 'Type', with: 'Text'
-      click_on(I18n.t('pages.edit.update'))
-      save_and_open_page
+      visit website_page_path(website, @page, locale: 'en')
+      fill_in 'Title', with: "Hello "
+      fill_in 'Content', with: "I am a widget"
+      click_on(I18n.t('widgets.widget_form.post_widget'))
       expect(Text.count).to eq(1)
     end
 
     it "with different types" do
-      
+
+    end
+  end
+
+  describe 'editing' do
+    it "can be done from the page itself" do
+      @page = FactoryGirl.create(:page, website_id: website.id, title:"My Second Page")
+      widget = FactoryGirl.create(:widget, type: 'Text', widgetable_id: @page.id, widgetable_type: 'Page', title:"My First Widget")
+      @page.reload
+      visit website_page_path(website, @page, locale: 'en')
+      click_on("edit_widget_#{widget.id}")
+      fill_in 'New Title', with: "My best widget"
+      click_on(I18n.t('widgets.widget_form.post_widget'))
+      expect(page).to have_content('My best widget')
     end
   end
 

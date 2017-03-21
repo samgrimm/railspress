@@ -1,7 +1,13 @@
 <%= content_tag :div, class: text.col_span do -%>
   <div class="card" data-id="<%=text.id%>">
-    <%= text.col_span %>
-    <h3><%= text.title %></h3>
-    <p><%= text.content %></p>
+    <div class="feature btn-group pull-right">
+      <%= link_to fa_icon('pencil'), '#', class:'btn btn-small btn-primary', id:"edit_widget_#{text.id}"%>
+      <%= link_to fa_icon('trash'), '#', class:'btn btn-small btn-danger', id:"delete_widget_#{text.id}" %>
+    </div>
+    <div class="card-block" >
+      <%= text.col_span %>
+      <h3><%= text.title %></h3>
+      <p><%= text.content %></p>
+    </div>
   </div>
 <% end -%>
