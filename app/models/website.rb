@@ -6,10 +6,10 @@ class Website < ApplicationRecord
   has_one :blog
 
   def footer
-    self.navbars.where(position: 'footer').first
+    navbars.where(position: 'footer').first
   end
 
   def main_nav
-    self.navbars.where(position: 'main').first
+    navbars.where(position: 'main').first
   end
 end

@@ -1,7 +1,7 @@
-#encoding: utf-8
+# encoding: utf-8
 I18n.default_locale = :en
 
 LANGUAGES = [
-  ['English', 'en'],
-  ["Portugu&ecirc;s".html_safe, 'pt']
-]
+  %w(English en),
+  ['Portugu&ecirc;s'.html_safe, 'pt']
+].freeze

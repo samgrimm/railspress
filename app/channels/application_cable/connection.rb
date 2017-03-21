@@ -6,6 +6,7 @@ module ApplicationCable
       logger.add_tags 'ActionCable', current_user.email
       logger.add_tags 'ActionCable', current_user.id
     end
+
     protected
 
     def find_verified_user

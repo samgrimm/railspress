@@ -13,19 +13,18 @@ class BlogsController < ApplicationController
     end
   end
 
-
   # POST /blogs
   def create
-      @blog = @website.build_blog
+    @blog = @website.build_blog
     if @blog.save
-      redirect_to website_blog_posts_path(@website, @blog, locale:I18n.locale), notice: t(".blog_succes")
+      redirect_to website_blog_posts_path(@website, @blog, locale: I18n.locale), notice: t('.blog_succes')
     else
       render :new
     end
   end
 
-
   private
+
   def set_website
     @website = Website.find(params[:website_id])
   end
@@ -34,5 +33,4 @@ class BlogsController < ApplicationController
     @website = Website.find(params[:website_id])
     redirect_to root_path unless current_user == @website.user
   end
-
 end

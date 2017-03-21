@@ -8,9 +8,9 @@ class PostsController < ApplicationController
   def index
     @posts = @blog.posts
   end
+
   # GET /posts/1
-  def show
-  end
+  def show; end
 
   # GET /posts/new
   def new
@@ -18,57 +18,60 @@ class PostsController < ApplicationController
   end
 
   # GET /posts/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /posts
   def create
-      @post = @blog.posts.build(post_params)
+    @post = @blog.posts.build(post_params)
     if @post.save
-      redirect_to website_blog_post_path(@website, @blog,@post, locale:I18n.locale), notice: t(".post_succes")
+      redirect_to website_blog_post_path(@website, @blog, @post, locale: I18n.locale), notice: t('.post_succes')
     else
       render :new
     end
   end
+
   # PATCH/PUT /posts/1
   def update
     if @post.update(post_params)
-      redirect_to website_blog_post_path(@website, @blog,@post, locale:I18n.locale), notice: t(".post_updated")
+      redirect_to website_blog_post_path(@website, @blog, @post, locale: I18n.locale), notice: t('.post_updated')
     else
       render :edit
     end
   end
+
   # DELETE /posts/1
   def destroy
     @post.destroy
-    redirect_to website_blog_posts_path(@website, @blog, locale:I18n.locale), notice: t(".post_destroyed")
+    redirect_to website_blog_posts_path(@website, @blog, locale: I18n.locale), notice: t('.post_destroyed')
   end
 
   def toggle_status
     @post.toggle_status
-    redirect_to website_blog_posts_path(@website, @blog, locale:I18n.locale), notice: t('.success')
+    redirect_to website_blog_posts_path(@website, @blog, locale: I18n.locale), notice: t('.success')
   end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
-    def set_website
-      @website = Website.find(params[:website_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
-    def set_blog
-      @blog = Blog.find(params[:blog_id])
-    end
+  def set_website
+    @website = Website.find(params[:website_id])
+  end
 
-    def check_website_owner
-      @website = Website.find(params[:website_id])
-      redirect_to root_path unless current_user == @website.user
-    end
+  def set_blog
+    @blog = Blog.find(params[:blog_id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def post_params
-      params.require(:post).permit(:title, :content, :status, :blog_id)
-    end
+  def check_website_owner
+    @website = Website.find(params[:website_id])
+    redirect_to root_path unless current_user == @website.user
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def post_params
+    params.require(:post).permit(:title, :content, :status, :blog_id)
+  end
 end

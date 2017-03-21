@@ -9,9 +9,8 @@ class ImagesController < ApplicationController
     end
   end
 
-
   def sort
-    params[:order].each do |key, value|
+    params[:order].each do |_key, value|
       @widgetable.widgets.find(value[:id]).update(position: value[:position])
     end
     render nothing: true
@@ -20,7 +19,7 @@ class ImagesController < ApplicationController
   private
 
   def widget_params
-    params.require(:widget).permit(:title, :image, :type, :col_span )
+    params.require(:widget).permit(:title, :image, :type, :col_span)
   end
 
   def load_widgetable
@@ -28,5 +27,4 @@ class ImagesController < ApplicationController
     id = request.path.split('/')[5]
     @widgetable = resource.singularize.classify.constantize.find(id)
   end
-
 end

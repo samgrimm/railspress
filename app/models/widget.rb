@@ -3,6 +3,6 @@ class Widget < ApplicationRecord
   mount_uploader :image, ImageUploader
 
   def self.by_position
-    order("position ASC")
+    order('position ASC')
   end
 end

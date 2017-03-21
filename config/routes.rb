@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
-
-#refactor routes -- paths are too long
+  # refactor routes -- paths are too long
 
   scope '(:locale)' do
     resources :websites do
@@ -30,8 +29,6 @@ Rails.application.routes.draw do
 
     devise_for :users
 
-
     mount ActionCable.server => '/cable'
-
   end
 end

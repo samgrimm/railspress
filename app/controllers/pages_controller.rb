@@ -9,6 +9,7 @@ class PagesController < ApplicationController
   def index
     @pages = Page.all
   end
+
   # GET /pages/1
   def show
     @page = Page.includes(:widgets).find(params[:id])
@@ -22,51 +23,54 @@ class PagesController < ApplicationController
   end
 
   # GET /pages/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /pages
   def create
-      @page = @website.pages.build(page_params)
+    @page = @website.pages.build(page_params)
     if @page.save
-      redirect_to website_page_path(@website, @page, locale:I18n.locale), notice: t(".page_succes")
+      redirect_to website_page_path(@website, @page, locale: I18n.locale), notice: t('.page_succes')
     else
       render :new
     end
   end
+
   # PATCH/PUT /pages/1
   def update
     if @page.update(page_params)
-      redirect_to website_page_path(@website,@page, locale:I18n.locale), notice: t(".page_updated")
+      redirect_to website_page_path(@website, @page, locale: I18n.locale), notice: t('.page_updated')
     else
       render :edit
     end
   end
+
   # DELETE /pages/1
   def destroy
     @page.destroy
-    redirect_to website_pages_path(@website,locale: I18n.locale), notice: t(".page_destroyed")
+    redirect_to website_pages_path(@website, locale: I18n.locale), notice: t('.page_destroyed')
   end
+
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_page
-      @page = Page.find(params[:id])
-    end
 
-    def set_website
-      @website = Website.find(params[:website_id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_page
+    @page = Page.find(params[:id])
+  end
 
-    def check_website_owner
-      @website = Website.find(params[:website_id])
-      redirect_to root_path unless current_user == @website.user
-    end
+  def set_website
+    @website = Website.find(params[:website_id])
+  end
 
-    # Only allow a trusted parameter "white list" through.
-    def page_params
-      params.require(:page).permit(:website_id,
-                                    :title,
-                                    :content,
-                                    :layout_id)
-    end
+  def check_website_owner
+    @website = Website.find(params[:website_id])
+    redirect_to root_path unless current_user == @website.user
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def page_params
+    params.require(:page).permit(:website_id,
+                                 :title,
+                                 :content,
+                                 :layout_id)
+  end
 end

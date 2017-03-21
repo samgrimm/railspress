@@ -1,11 +1,11 @@
 When(/^I go to the website page$/) do
-  @user = FactoryGirl.create(:user, password: "foobar")
-  @color_combo = FactoryGirl.create(:color_combo, name:"combo1")
+  @user = FactoryGirl.create(:user, password: 'foobar')
+  @color_combo = FactoryGirl.create(:color_combo, name: 'combo1')
   @website = FactoryGirl.create(:website, user: @user, color_combo: @color_combo)
   visit new_user_session_path
-  fill_in "user_email", :with => @user.email
-  fill_in "user_password", :with => "foobar"
-  click_button "Login"
+  fill_in 'user_email', with: @user.email
+  fill_in 'user_password', with: 'foobar'
+  click_button 'Login'
   visit website_path(@website)
 end
 

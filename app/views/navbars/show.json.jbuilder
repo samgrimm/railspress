@@ -1,1 +1,1 @@
-json.partial! "navbars/navbar", navbar: @navbar
+json.partial! 'navbars/navbar', navbar: @navbar

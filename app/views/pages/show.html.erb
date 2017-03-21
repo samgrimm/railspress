@@ -1,55 +1,54 @@
 <% if @page.layout.nil? %>
-  <%= render "layout1" , locals: @page %>
+<%= render "layout1" , locals: @page %>
 <% else %>
-  <%= render "#{@page.layout.name}" , locals: @page %>
+<%= render "#{@page.layout.name}" , locals: @page %>
 <% end %>
-
 
 <!-- Nav tabs -->
 <ul class="nav nav-tabs" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#text" role="tab">Add Text</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" data-toggle="tab" href="#image" role="tab">Add Image</a>
-  </li>
+    <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#text" role="tab">Add Text</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#image" role="tab">Add Image</a>
+    </li>
 
 </ul>
 
 <!-- Tab panes -->
 <div class="tab-content">
-  <div class="tab-pane active" id="text" role="tabpanel">
-    <div class="card card-block">
-      <%= render 'widgets/widget_form' %>
+    <div class="tab-pane active" id="text" role="tabpanel">
+        <div class="card card-block">
+            <%= render 'widgets/widget_form' %>
+        </div>
     </div>
-  </div>
-  <div class="tab-pane" id="image" role="tabpanel">
-    <div class="card card-block">
-      <%= form_for([@website,@page,@image], url:website_page_images_path(@website, @page, locale: I18n.locale) ) do |f| %>
-        <div class="form-group ">
-          <%= f.label :title, "Title" %>
-          <%= f.text_field :title, class: 'form-control' %>
+    <div class="tab-pane" id="image" role="tabpanel">
+        <div class="card card-block">
+            <%= form_for([@website,@page,@image], url:website_page_images_path(@website, @page, locale: I18n.locale) ) do |f| %>
+            <div class="form-group ">
+                <%= f.label :title, "Title" %>
+                <%= f.text_field :title, class: 'form-control' %>
+            </div>
+
+            <div class="form-group ">
+                <%= f.label :col_span %>
+                <%= f.text_field :col_span, class: 'form-control' %>
+            </div>
+
+            <div class="form-group " id="image_fields">
+                <%= f.label :image, 'Image'%>
+                <%= f.file_field :image, class: 'form-control' %>
+            </div>
+            <div class="form-group " id="text-fields">
+                <%= f.submit t('.post_widget'), class: 'btn btn-primary' %>
+            </div>
+            <% end %>
         </div>
 
-        <div class="form-group ">
-          <%= f.label :col_span %>
-          <%= f.text_field :col_span, class: 'form-control' %>
-        </div>
-
-        <div class="form-group " id="image_fields" >
-          <%= f.label :image, 'Image'%>
-          <%= f.file_field :image, class: 'form-control' %>
-        </div>
-        <div class="form-group " id="text-fields">
-          <%= f.submit t('.post_widget'), class: 'btn btn-primary' %>
-        </div>
-      <% end %>
     </div>
-
-  </div>
 
 </div>
 
 <div class="row mt-3 sortable" id="widgets" data-page-id="<%= @page.id %>">
-  <%= render @page.widgets %>
+    <%= render @page.widgets %>
 </div>

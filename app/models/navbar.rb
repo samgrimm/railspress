@@ -6,7 +6,7 @@ class Navbar < ApplicationRecord
   enum position: { main: 0, footer: 1 }
 
   def add_link(page)
-    self.links.build(page_id: page.id)
-    self.save
+    links.build(page_id: page.id)
+    save
   end
 end

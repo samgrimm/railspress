@@ -8,6 +8,6 @@ Rails.application.config.assets.version = '1.0'
 
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
-Rails.application.config.assets.precompile += %w( combo1.scss )
-Rails.application.config.assets.precompile += %w( combo2.scss )
-Rails.application.config.assets.precompile += %w( combo3.scss )
+Rails.application.config.assets.precompile += %w(combo1.scss)
+Rails.application.config.assets.precompile += %w(combo2.scss)
+Rails.application.config.assets.precompile += %w(combo3.scss)

@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :color_combo do
-    name "MyString"
+    name 'MyString'
   end
 end

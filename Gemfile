@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
-
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
@@ -42,8 +41,8 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
@@ -52,24 +51,24 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'rspec-rails', '~> 3.5', group: ["test", "development"]
-gem 'capybara', '~> 2.12', group: ["test", "development"]
-gem "capybara-webkit", group: ["test", "development"]
-gem 'database_cleaner', '~> 1.5', group: ["test", "development"]
-gem 'factory_girl_rails', '~> 4.8', group: ["test", "development"]
-gem 'cucumber-rails', :require => false, group: ["test", "development"]
-gem 'friendly_id', '~> 5.1.0'
 gem 'bootstrap', '~>4.0.0.alpha6'
-gem 'font-awesome-rails', '~> 4.7'
-gem 'jquery-ui-rails', '~>6.0'
-gem 'dotenv-rails', '~>2.1'
-gem 'gritter', '~>1.2'
-gem 'rails-i18n', '~> 5.0'
-gem 'i18n-tasks', '~>0.9.8'
-gem 'rails_12factor'
-gem 'devise', '~>4.2'
-gem 'carrierwave-aws', '~>1.0', '>=1.0.2'
+gem 'capybara', '~> 2.12', group: %w(test development)
+gem 'capybara-webkit', group: %w(test development)
 gem 'carrierwave', '~>1.0'
-gem 'mini_magick', '~>4.6'
-gem 'launchy'
+gem 'carrierwave-aws', '~>1.0', '>=1.0.2'
 gem 'cocoon', '~>1.2', '>=1.2.9'
+gem 'cucumber-rails', require: false, group: %w(test development)
+gem 'database_cleaner', '~> 1.5', group: %w(test development)
+gem 'devise', '~>4.2'
+gem 'dotenv-rails', '~>2.1'
+gem 'factory_girl_rails', '~> 4.8', group: %w(test development)
+gem 'font-awesome-rails', '~> 4.7'
+gem 'friendly_id', '~> 5.1.0'
+gem 'gritter', '~>1.2'
+gem 'i18n-tasks', '~>0.9.8'
+gem 'jquery-ui-rails', '~>6.0'
+gem 'launchy'
+gem 'mini_magick', '~>4.6'
+gem 'rails-i18n', '~> 5.0'
+gem 'rails_12factor'
+gem 'rspec-rails', '~> 3.5', group: %w(test development)
