@@ -1,10 +1,10 @@
 <%= content_tag :div, class: image.col_span do -%>
-  <div class="card" data-id="<%=image.id%>">
+  <div class="card sorty-card" data-id="<%=image.id%>">
     <div class="feature btn-group pull-right">
-        <%= link_to fa_icon('pencil'), edit_website_page_image_path(@website, @page, image, locale:I18n.locale), class:'btn btn-small btn-primary', id:"edit_image_#{image.id}"%>
-        <%= link_to fa_icon('trash'), website_page_image_path(@website, @page, image, locale:I18n.locale), method: :delete, class:'btn btn-small btn-danger', id:"delete_image_#{image.id}" %>
+        <%= link_to fa_icon('pencil'), edit_website_page_image_path(@page.website, @page, image, locale:I18n.locale), class:'btn btn-small btn-primary', id:"edit_image_#{image.id}"%>
+        <%= link_to fa_icon('trash'), website_page_image_path(@page.website, @page, image, locale:I18n.locale), method: :delete, class:'btn btn-small btn-danger', id:"delete_image_#{image.id}" %>
     </div>
-    <%= image.col_span %>
+    <%= "#{image.id} - #{image.position}" %>
     <h3><%= image.title %></h3>
     <p><%=image_tag image.image ,width:'100%'%></p>
   </div>

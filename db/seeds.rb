@@ -20,3 +20,37 @@ puts 'created 1 user'
   description: 'Hello',
   color_combo_id: ColorCombo.first.id
 )
+
+4.times do |page|
+  Page.create!(
+    title: "Page #{page + 1}",
+    content: Faker::Lorem.paragraph(2),
+    website_id: @website.id
+  )
+end
+
+@pages = Page.all
+
+@pages.each do |page|
+  3.times do
+    col_span = rand(1..12).to_s
+    page.widgets.create!(
+      type: 'Text',
+      title: Faker::Lorem.sentence,
+      content: Faker::Lorem.paragraph(2),
+      col_span: "col-md-#{col_span}"
+    )
+  end
+end
+
+@pages.each do |page|
+  3.times do
+    col_span = rand(1..12).to_s
+    page.widgets.create!(
+      type: 'Image',
+      title: Faker::Lorem.sentence,
+      image: Faker::LoremPixel.image,
+      col_span: "col-md-#{col_span}"
+    )
+  end
+end

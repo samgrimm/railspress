@@ -7,7 +7,6 @@
     <div class="card">
       <p><%= website.name %></p>
       <p><%= website.description %></p>
-      <p><%= website.user %></p>
       <p><%= link_to t('show'), website_path(website, locale: I18n.locale) %></p>
       <p><%= link_to t('edit'), edit_website_path(website,locale: I18n.locale), id: "edit_#{website.id}" %></p>
       <p><%= link_to t('delete'), website_path(website, locale: I18n.locale), id: "delete_#{website.id}", method: :delete, data: { confirm: t('are_you_sure') } %></p>

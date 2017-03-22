@@ -1,21 +1,6 @@
 <div class="page_layout_1">
+  <strong><%= @page.title %></strong>
   <p>
-    <strong>Website:</strong>
-    <%= @page.website %>
-  </p>
-
-  <p>
-    <strong>Layout:</strong>
-    <%= image_tag @page.layout.image unless @page.layout.nil? %>
-  </p>
-
-  <p>
-    <strong>Title:</strong>
-    <%= @page.title %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
     <%= @page.content %>
   </p>
 

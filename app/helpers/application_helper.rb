@@ -18,6 +18,10 @@ module ApplicationHelper
       {
         url: about_path(params[:locale]),
         title: t('.about')
+      },
+      {
+        url: websites_path(params[:locale]),
+        title: t('.my_websites')
       }
 
     ]

@@ -1,8 +1,8 @@
 <!-- Figure out where to put the toggle button
 Functionality works -->
 
-<input type=button value="Toggle View" onclick="showHideDiv('#sidebar');" class="btn btn-small btn-primary">
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse blog-nav" id="cmsNav">
+
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse blog-nav fixed-top" id="cmsNav">
   <button class="navbar-toggler navbar-toggler-right" type="button"
     data-toggle="collapse" data-target="#navbarSupportedContent"
     aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -14,6 +14,7 @@ Functionality works -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <%= nav_helper "nav-link", "li"%>
+        <li><input type=button value="Toggle View" onclick="showHideDiv('#sidebar');" class="btn btn-small btn-primary nav-link"></li>
 
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

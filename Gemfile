@@ -72,3 +72,4 @@ gem 'mini_magick', '~>4.6'
 gem 'rails-i18n', '~> 5.0'
 gem 'rails_12factor'
 gem 'rspec-rails', '~> 3.5', group: %w(test development)
+gem 'faker', '~> 1.7', '>= 1.7.3'

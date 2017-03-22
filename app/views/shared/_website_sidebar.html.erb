@@ -1,7 +1,7 @@
 
   <ul class="nav nav-pills flex-column">
     <li class="nav-item">
-      <a class="nav-link active" href="#">Overview <span class="sr-only">(current)</span></a>
+      <%= link_to 'Overview', website_path(@website, locale: I18n.locale), class:"nav-link"%>
     </li>
     <li class="nav-item">
       <%= link_to 'Navbars', website_navbars_path(@website, locale: I18n.locale), class:"nav-link"%>
@@ -16,12 +16,7 @@
         <%= link_to 'Blog', new_website_blog_path(@website, locale: I18n.locale), class:"nav-link"%>
       <% end %>
     </li>
-    <li class="nav-item">
-      <%= link_to 'Widgets', website_navbars_path(@website, locale: I18n.locale), class:"nav-link"%>
-    </li>
-    <li class="nav-item">
-      <%= link_to 'Dev View/Guest Views', website_navbars_path(@website, locale: I18n.locale), id: "hide" ,class:"nav-link"%>
-    </li>
+  
   </ul>
 
 

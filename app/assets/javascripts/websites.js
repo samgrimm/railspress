@@ -4,11 +4,9 @@ function showHideDiv(elementId) {
     if (element.is(":visible")) {
       element.css({'display':'none'});
       growMainArea('#mainArea');
-      hideNavBar('#cmsNav');
     } else {
       element.css({'display':'block'});
       reduceMainArea('#mainArea');
-      showNavBar('#cmsNav');
     }
   }
 }
@@ -26,20 +24,5 @@ function reduceMainArea(elementId) {
     var area = $(elementId);
     area.addClass('col-sm-9 offset-sm-3 col-md-10 offset-md-2');
     area.removeClass('col-md-12');
-  }
-}
-
-function hideNavBar(navId) {
-  if (document.getElementById) {
-    var navBar = $(navId);
-    navBar.css({'display':'none'});
-  }
-}
-
-
-function showNavBar(navId) {
-  if (document.getElementById) {
-    var navBar = $(navId);
-    navBar.css({'display':'block'});
   }
 }
