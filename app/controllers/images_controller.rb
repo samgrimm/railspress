@@ -1,5 +1,6 @@
 class ImagesController < ApplicationController
   before_action :load_widgetable
+  before_action :set_widget
 
   def create
     @widget = @widgetable.widgets.build(widget_params)
@@ -7,6 +8,21 @@ class ImagesController < ApplicationController
     if @widget.save
       redirect_to website_page_path(@widgetable.website, @widgetable, locale: I18n.locale)
     end
+  end
+
+  def edit; end
+
+  def update
+    if @widget.update(widget_params)
+      redirect_to website_page_path(@widgetable.website, @widgetable, locale: I18n.locale), notice: t('.widget_updated')
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @widget.destroy
+    redirect_to website_page_path(@widgetable.website, @widgetable, locale: I18n.locale), notice: t('.widget_destroyed')
   end
 
   def sort
@@ -18,8 +34,12 @@ class ImagesController < ApplicationController
 
   private
 
+  def set_widget
+    @widget = Widget.find(params[:id])
+  end
+
   def widget_params
-    params.require(:widget).permit(:title, :image, :type, :col_span)
+    params.require(:image).permit(:title, :image, :type, :col_span)
   end
 
   def load_widgetable

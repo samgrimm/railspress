@@ -6,7 +6,7 @@ DatabaseCleaner.strategy = :deletion
 describe 'widgets' do
   let(:user) { FactoryGirl.create(:user) }
   let(:color_combo1) { FactoryGirl.create(:color_combo, name: 'Combo1') }
-  let(:website) { FactoryGirl.create(:website, user_id: user.id, color_combo_id: color_combo1.id) }
+  let(:website) { FactoryGirl.create(:website, user_id: user.id,color_combo_id: color_combo1.id) }
   let(:navbar) { FactoryGirl.create(:navbar, website: website) }
   let(:footer) { FactoryGirl.create(:navbar, website: website, position: 'footer') }
   before do
@@ -27,16 +27,51 @@ describe 'widgets' do
     end
   end
 
-  describe 'editing' do
+  describe 'editing text widget' do
     it 'can be done from the page itself' do
       @page = FactoryGirl.create(:page, website_id: website.id, title: 'My Second Page')
       widget = FactoryGirl.create(:widget, type: 'Text', widgetable_id: @page.id, widgetable_type: 'Page', title: 'My First Widget')
       @page.reload
       visit website_page_path(website, @page, locale: 'en')
       click_on("edit_widget_#{widget.id}")
-      fill_in 'New Title', with: 'My best widget'
-      click_on(I18n.t('widgets.widget_form.post_widget'))
+      fill_in 'Title', with: 'My best widget'
+      click_on(I18n.t('widgets.edit.post_widget'))
       expect(page).to have_content('My best widget')
+    end
+  end
+
+  describe 'deleting text widget' do
+    it 'can be done from the page itself' do
+      @page = FactoryGirl.create(:page, website_id: website.id, title: 'My Second Page')
+      widget = FactoryGirl.create(:widget, type: 'Text', widgetable_id: @page.id, widgetable_type: 'Page', title: 'My First Widget')
+      @page.reload
+      visit website_page_path(website, @page, locale: 'en')
+      click_on("delete_widget_#{widget.id}")
+      expect(page).not_to have_content('My First Widget')
+    end
+  end
+
+  describe 'editing image widget' do
+    it 'can be done from the page itself' do
+      @page = FactoryGirl.create(:page, website_id: website.id, title: 'My Second Page')
+      widget = FactoryGirl.create(:widget, type: 'Image', widgetable_id: @page.id, widgetable_type: 'Page', title: 'My First Widget')
+      @page.reload
+      visit website_page_path(website, @page, locale: 'en')
+      click_on("edit_image_#{widget.id}")
+      fill_in 'Title', with: 'My best widget'
+      click_on(I18n.t('images.edit.post_widget'))
+      expect(page).to have_content('My best widget')
+    end
+  end
+
+  describe 'deleting image widget' do
+    it 'can be done from the page itself' do
+      @page = FactoryGirl.create(:page, website_id: website.id, title: 'My Second Page')
+      widget = FactoryGirl.create(:widget, type: 'Image', widgetable_id: @page.id, widgetable_type: 'Page', title: 'My First Widget')
+      @page.reload
+      visit website_page_path(website, @page, locale: 'en')
+      click_on("delete_image_#{widget.id}")
+      expect(page).not_to have_content('My First Widget')
     end
   end
 

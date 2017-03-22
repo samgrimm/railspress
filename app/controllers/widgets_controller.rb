@@ -1,8 +1,25 @@
 class WidgetsController < ApplicationController
   before_action :load_widgetable
+  before_action :set_widget, only: [:edit, :update, :destroy]
 
   def create
     @widget = @widgetable.widgets.build(widget_params)
+  end
+
+  def edit; end
+
+  def update
+
+    if @widget.update(widget_params)
+      redirect_to website_page_path(@widgetable.website, @widgetable, locale: I18n.locale), notice: t('.widget_updated')
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @widget.destroy
+    redirect_to website_page_path(@widgetable.website, @widgetable, locale: I18n.locale), notice: t('.widget_destroyed')
   end
 
   def sort
@@ -14,12 +31,17 @@ class WidgetsController < ApplicationController
 
   private
 
+  def set_widget
+    @widget = Widget.find(params[:id])
+  end
+
   def widget_params
-    params.require(:widget).permit(:title, :content, :type, :col_span)
+    params.require(:text).permit(:title, :content, :type, :col_span)
   end
 
   def load_widgetable
-    resource, id = request.path.split('/')[1, 2]
+    resource = request.path.split('/')[4]
+    id = request.path.split('/')[5]
     @widgetable = resource.singularize.classify.constantize.find(id)
   end
 end

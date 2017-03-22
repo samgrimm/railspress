@@ -12,8 +12,8 @@ Rails.application.routes.draw do
         end
       end
       resources :pages do
-        resources :images, only: [:create]
-        resources :widgets, only: [:sort, :create] do
+        resources :images, only: [:create, :edit, :update, :destroy]
+        resources :widgets, only: [:sort, :create, :edit, :update, :destroy] do
           put :sort, on: :collection, as: '/sort'
         end
       end
